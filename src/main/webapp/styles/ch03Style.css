@@ -1,0 +1,11 @@
+.container-sm {
+    max-width: 80ex;
+}
+
+.form-control {
+    width: 70px;
+}
+
+#submitButton {
+    height: 60px;
+}
