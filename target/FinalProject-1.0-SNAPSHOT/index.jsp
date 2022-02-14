@@ -18,7 +18,7 @@
         <ul>
             <li><a href="MyServlet">Demo - MyServlet</a></li>
             <li><a href="add">Demo - Addition Servlet</a></li>
-            <li><a href="">Assignment - Temperature Converter</a></li>
+            <li><a href="temp-converter">Assignment - Temperature Converter</a></li>
         </ul>
     </li>
 </ul>
