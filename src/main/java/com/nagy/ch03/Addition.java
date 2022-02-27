@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 
 @WebServlet(name = "Addition", value = "/add")
-public class ch03 extends HttpServlet {
+public class Addition extends HttpServlet {
 
     private PrintWriter writeHeader(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
         PrintWriter writer = res.getWriter();

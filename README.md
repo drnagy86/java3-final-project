@@ -13,3 +13,6 @@ I found learning how to use Tomcat really satisfying. I didn't really know anyth
 ## Chapter 3
 
 In chapter 3, we learned about Servlets for Java. It was interesting to learn how to create Servlets with Intellij and how it creates the file for us with Java EE. I knew a little about requests and responses, and it was interesting to see how to access the information on the HTML page using methods like “getParameter”. It was also interesting to learn how to read the url to understand what is being passed to the Sevlet. Learning about the “@WebServlet” annotation was also useful for setting a url path or many of them.
+
+## Chapter 4
+Must also use server side validation on top of client side
