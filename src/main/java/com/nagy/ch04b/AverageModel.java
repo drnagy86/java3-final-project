@@ -36,14 +36,11 @@ public class AverageModel {
         BigDecimal bd3 = new BigDecimal(num3);
         BigDecimal sum = bd1.add(bd2).add(bd3);
         BigDecimal three = new BigDecimal("3");
-
         try {
             this.average = sum.divide(three);
-        } catch (ArithmeticException ex){
+        } catch(ArithmeticException e) {
             this.average = sum.divide(three, 15, RoundingMode.HALF_UP);
         }
-
-
     }
 
     public String getNum1() {
@@ -79,5 +76,9 @@ public class AverageModel {
         } catch(NumberFormatException e) {
             throw new IllegalArgumentException("Invalid number");
         }
+    }
+
+    public String toString() {
+        return String.format("The average of %s, %s, and %s is %s", num1, num2, num3, getAverage());
     }
 }

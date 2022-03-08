@@ -1,10 +1,4 @@
-body {
-    background-color: #420666;
-    color: greenyellow;
-    font-family: sans-serif;
-}
 
-a {
-    color: aliceblue;
+:root {
+    /*--bs-primary-rgb: 69, 69, 69;*/
 }
-
