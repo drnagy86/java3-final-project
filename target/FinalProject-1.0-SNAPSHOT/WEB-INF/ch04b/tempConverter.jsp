@@ -45,8 +45,8 @@
 
                     </div>
                     <% if(error != null && error) { %>
-                    <div class="alert alert-danger" role="alert">
-                        <p><%= errMessage %></p>
+                    <div class="row" >
+                        <p class="text-danger"><%= errMessage %></p>
                     </div>
                     <% } %>
                         <div class="d-flex justify-content-center">

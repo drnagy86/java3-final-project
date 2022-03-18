@@ -42,11 +42,10 @@
 <%--                            <label for="degreesC" id="lblDegreesC">&#8451;</label>--%>
                             <input type="submit" class="btn btn-primary" id="submitButton" value="Convert"/>
                         </div>
-
                     </div>
                     <% if(error != null && error) { %>
-                    <div class="alert alert-danger" role="alert">
-                        <p><%= errMessage %></p>
+                    <div class="row mx-auto" >
+                        <p class="text-danger"><%= errMessage %></p>
                     </div>
                     <% } %>
                         <div class="d-flex justify-content-center">
