@@ -1,34 +1,36 @@
 package com.nagy.support;
 
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class Ticket {
-    private String customer;
+    private String customerName;
     private String subject;
     private String body;
-
-    public final String DEFAULT_STRING = "Undefined";
+    private Map<String, Attachment> attachments;
+    public final String DEFAULT_STR = "Undefined";
 
     public Ticket() {
-        this.customer = DEFAULT_STRING;
-        this.subject = DEFAULT_STRING;
-        this.body = DEFAULT_STRING;
+        this.customerName = DEFAULT_STR;
+        this.subject = DEFAULT_STR;
+        this.body = DEFAULT_STR;
+        this.attachments = new LinkedHashMap<>();
     }
 
-    public Ticket(String customer, String subject, String body) {
-        validateCustomerName(customer);
-        validateSubject(subject);
-        validateBody(body);
-        this.customer = customer;
-        this.subject = subject;
-        this.body = body;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public String getCustomer() {
-        return customer;
+    public void setCustomerName(String customerName) {
+        validateCustomerName(customerName);
+        this.customerName = customerName;
     }
 
-    public void setCustomer(String customer) {
-        validateCustomerName(customer);
-        this.customer = customer;
+    private void validateCustomerName(String customerName) {
+        if(customerName == null || customerName.length() == 0) {
+            throw new IllegalArgumentException("Name required");
+        }
     }
 
     public String getSubject() {
@@ -40,6 +42,12 @@ public class Ticket {
         this.subject = subject;
     }
 
+    private void validateSubject(String subject) {
+        if(subject == null || subject.length() == 0) {
+            throw new IllegalArgumentException("Subject required");
+        }
+    }
+
     public String getBody() {
         return body;
     }
@@ -49,21 +57,25 @@ public class Ticket {
         this.body = body;
     }
 
-    private void validateCustomerName(String customerName){
-        if (customerName == null || customerName == ""){
-            throw new IllegalArgumentException("Name required");
-        }
-    }
-    private void validateSubject(String subject){
-        if (subject == null || subject == ""){
-            throw new IllegalArgumentException("Subject required");
+    private void validateBody(String body) {
+        if(body == null || body.length() == 0) {
+            throw new IllegalArgumentException("Message body required");
         }
     }
 
-    private void validateBody(String body){
-        if (body == null || body == ""){
-            throw new IllegalArgumentException("Subject required");
-        }
+    public Attachment getAttachment(String name) {
+        return attachments.get(name);
     }
 
+    public Collection<Attachment> getAttachments() {
+        return attachments.values();
+    }
+
+    public void addAttachment(Attachment attachment) {
+        attachments.put(attachment.getName(), attachment);
+    }
+
+    public int getNumberOfAttachments() {
+        return attachments.size();
+    }
 }

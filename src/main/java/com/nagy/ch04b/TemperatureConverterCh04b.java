@@ -21,56 +21,38 @@ public class TemperatureConverterCh04b extends HttpServlet {
         String convertTo = request.getParameter("radConversion");
         Temperature temperature = new Temperature();
 
+        // regular expression found here
+        //https://stackoverflow.com/questions/15814592/how-do-i-include-negative-decimal-numbers-in-this-regular-expression
+        String regexOnlyDigits = "^-?[0-9]\\d*(\\.\\d+)?$";
 
-        try {
-            if (convertTo.equals("f")){
-                temperature.setDegreesFahrenheit(new BigDecimal(degrees));
-            }
-            else {
-                temperature.setDegreesCelsius(new BigDecimal(degrees));
-            }
-        }
-        catch (IllegalArgumentException ex){
+        if (degrees == null || degrees.equals("") || !degrees.matches(regexOnlyDigits)){
             request.setAttribute("error", true);
-            request.setAttribute("errorMsg", "There was a problem with the value you were trying to convert: </br>" + ex.getMessage());
+            request.setAttribute("errorMsg",
+                    "Please enter a number as a temperature to convert.");
+        } else if (convertTo == null || convertTo.equals("")){
+            request.setAttribute("error", true);
+            request.setAttribute("errorMsg",
+                    "Please select either Fahrenheit or Celsius");
+        } else {
+            try {
+                if (convertTo.equals("f")){
+                    temperature.setDegreesFahrenheit(new BigDecimal(degrees));
+                    request.setAttribute("temperature", temperature);
+                    request.setAttribute("degrees", null);
+                }
+                else {
+                    temperature.setDegreesCelsius(new BigDecimal(degrees));
+                    request.setAttribute("temperature", temperature);
+                    request.setAttribute("degrees", null);
+                }
+            }
+            catch (IllegalArgumentException ex){
+                request.setAttribute("error", true);
+                request.setAttribute("errorMsg", "There was a problem with the value you were trying to convert: </br>" + ex.getMessage());
+            }
         }
-
-
-
-
-        request.setAttribute("temperature", temperature);
-        request.setAttribute("degrees", null);
 
         request.getRequestDispatcher("/WEB-INF/ch04b/tempConverter.jsp").forward(request, response);
 
-//        String degreesCelsius = request.getParameter("degreesCelsius");
-//        String degreesFahrenheit = request.getParameter("degreesFahrenheit");
-//
-//        Temperature temperature = new Temperature();
-//
-//        try {
-//            temperature = new Temperature();
-//
-//            if (degreesCelsius == "" && degreesFahrenheit == "") {
-//
-//            }
-//            else if (degreesCelsius == ""){
-//                temperature.setDegreesFahrenheit(new BigDecimal(degreesFahrenheit));
-//            }
-//            else if (degreesFahrenheit == ""){
-//                temperature.setDegreesCelsius(new BigDecimal(degreesCelsius));
-//            }
-//
-//            request.setAttribute("temperature", temperature);
-//
-//        } catch (IllegalArgumentException ex){
-//
-//        }
-//
-//        request.setAttribute("temperature", temperature);
-//        request.setAttribute("degreesCelsius", null);
-//        request.setAttribute("degreesFahrenheit", null);
-//
-//        request.getRequestDispatcher("/WEB-INF/ch04b/tempConverter.jsp").forward(request, response);
     }
 }
