@@ -18,30 +18,40 @@
 
         <div class="col-md-5 mt-4 mx-auto">
             <h2>Table of Contents</h2>
-            <br/>
-            <ul class="">
-                <li><h3 class="te">Chapters 1 + 2</h3>
+            <ul class="mx-auto m-2">
+                <li class="m-2"><h3 class="te">Chapters 1 + 2</h3>
                     <ul>
                         <li><a href="register.html">Assignment1 - Registration Page</a></li>
                     </ul>
                 </li>
-                <br/>
-                <li><h3>Chapter 3</h3>
+                <li class="m-2"><h3>Chapter 3</h3>
                     <ul>
                         <li><a href="MyServlet">Demo - MyServlet</a></li>
                         <li><a href="add">Demo - Addition Servlet</a></li>
                         <li><a href="temp-converter">Assignment - Temperature Converter</a></li>
                     </ul>
                 </li>
-                <br/>
-                <li><h3>Chapter 4</h3></li>
+                <li class="m-2"><h3>Chapter 4</h3></li>
                 <ul>
                     <li><a href="ch04/twilio.jsp">Demo- SMS and Voice Out</a></li>
                     <li><a href="ch04/sms-in">ch04/sms-in</a></li>
                     <li><a href="ch04/voice-in">ch04/voice-in</a></li>
                     <li><a href="TemperatureConverterCh04b">Temperature Converter MVC Style</a></li>
                 </ul>
-                <br/>
+                <ll class="m-2"><h3>Chapter 5</h3></ll>
+                <ul>
+                    <li><a href="ch05/shop">Shopping Cart</a></li>
+                    <li><a href="support/tickets">Support Tickets</a></li>
+                </ul>
+
+                <ll class="m-2"><h3>Chapter 6</h3></ll>
+                <ul>
+                    <li><a href="user/profile">User Profile</a></li>
+                </ul>
+
+
+            <%--                user/profile--%>
+
             </ul>
         </div>
 

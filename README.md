@@ -18,3 +18,12 @@ In chapter 3, we learned about Servlets for Java. It was interesting to learn ho
 In chapter 4, we learned more about Java server pages. It was interesting to see how to create a Model-View-Control framework in Java and handle HTTP Get and Post Requests and route to the appropriate view.
 It was also interest to earn about server side validation on top of client side validation. I did not know that a HTML could be manipulated in such a way to remove validation on the client side. So while still being important, client side validation is not reliable for controlling the data received from users.
 Finally, I found learning how to use Twilio very interesting. I learned how to set up voice and sms messaging which I think is very useful.
+
+## Chapter 5
+For this chapter, we learned about HTTP sessions. Sessions are how web apps are able to associate a request to a specific browser to track data. I found it interesting how to track data using sessions as a kind of work around the fact that HTTP is stateless. Passing back his information between the client and the server by setting it in a key value session dictionary conceptually makes sense. It is interesting to see how it is implemented.
+
+I didn’t know a lot about sessions before so it was helpful to see how a browser tracks that. I use developer tools often in Chrome but haven't explored it fully. 
+
+
+
+

@@ -26,6 +26,18 @@ public class TicketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        int numPages = 0;
+        if (session.getAttribute("numPagesVisited") != null){
+            try {
+                numPages = Integer.parseInt(session.getAttribute("numPagesVisited").toString());
+                numPages++;
+            } catch (NumberFormatException ex){
+                System.out.println(ex);
+            }
+        }
+        session.setAttribute("numPagesVisited", numPages);
+
         if(action == null) action = "list";
         switch(action) {
             case "create":
@@ -36,7 +48,6 @@ public class TicketServlet extends HttpServlet {
                 break;
             case "download":
                 downloadAttachment(request,response);
-
                 break;
             default:
                 listTickets(request, response);
@@ -50,6 +61,8 @@ public class TicketServlet extends HttpServlet {
         ticket.setCustomerName(request.getParameter("name"));
         ticket.setSubject(request.getParameter("subject"));
         ticket.setBody(request.getParameter("message"));
+
+
 
         for(Part part: request.getParts()) {
             if(part.getName().equals("files") && part != null && part.getSize() > 0) {
@@ -65,10 +78,20 @@ public class TicketServlet extends HttpServlet {
             id = this.TICKET_ID++;
         }
         this.ticketDatabase.put(id, ticket);
-        response.sendRedirect("tickets?action=view&ticketId=" + id);
+        request.setAttribute("ticketSubmitted", true);
+        request.getRequestDispatcher("/WEB-INF/support/ticketForm.jsp").forward(request, response);
+
+//        response.sendRedirect("tickets?action=view&ticketId=" + id);
     }
 
     private void downloadAttachment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // login
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username")== null){
+            response.sendRedirect("login");
+            return;
+        }
+
         String ticketId = request.getParameter("ticketId");
         String fileName = request.getParameter("attachment");
         Ticket ticket = getTicket(ticketId);
@@ -110,11 +133,25 @@ public class TicketServlet extends HttpServlet {
     }
 
     private void listTickets(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // login
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username")== null){
+            response.sendRedirect("login");
+            return;
+        }
+
         request.setAttribute("ticketData", this.ticketDatabase);
         request.getRequestDispatcher("/WEB-INF/support/listTickets.jsp").forward(request, response);
     }
 
     private void viewTicket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // login
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username")== null){
+            response.sendRedirect("login");
+            return;
+        }
         String idString = request.getParameter("ticketId");
         Ticket ticket = getTicket(idString);
         request.setAttribute("ticketId", idString);

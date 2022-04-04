@@ -10,6 +10,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/ch05/shop">Ch05</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">

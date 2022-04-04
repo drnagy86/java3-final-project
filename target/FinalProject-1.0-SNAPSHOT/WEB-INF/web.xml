@@ -4,13 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <display-name>Java 3 Final Project</display-name>
-    <servlet>
-        <servlet-name>MyServlet2</servlet-name>
-        <servlet-class>com.nagy.ch03.Addition</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MyServlet2</servlet-name>
-        <url-pattern>/java/class/is/super/cool</url-pattern>
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>false</secure>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
 
-    </servlet-mapping>
+
 </web-app>
