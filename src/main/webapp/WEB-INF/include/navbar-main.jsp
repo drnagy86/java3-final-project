@@ -14,11 +14,22 @@
                         <a class="nav-link" href="${pageContext.request.contextPath}/ch05/shop">Ch05</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto">
+                <ul class="mb-auto navbar-nav me-1">
+                    <% if (session.getAttribute("username") != null) {%>
                     <li class="nav-item">
-                        <a class="btn btn-dark btn-lg" target="_blank" data-toggle="tooltip" title="My GitHub" href="https://github.com/drnagy86"><i class="fab fa-github"></i> My GitHub</a>
+                        <a class="nav-link" href="support/login?logout" >Logout</a>
                     </li>
+                    <% } else {%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="support/login" >Login</a>
+                    </li>
+                    <% } %>
                 </ul>
+<%--                <ul class="navbar-nav ms-auto">--%>
+<%--                    <li class="nav-item">--%>
+<%--                        <a class="btn btn-dark btn-lg" target="_blank" data-toggle="tooltip" title="My GitHub" href="https://github.com/drnagy86"><i class="fab fa-github"></i> My GitHub</a>--%>
+<%--                    </li>--%>
+<%--                </ul>--%>
 
             </div>
         </div>

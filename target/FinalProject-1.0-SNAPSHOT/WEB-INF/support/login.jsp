@@ -4,8 +4,9 @@
 <jsp:include page="../include/header-homepage.jsp" />
 <main class="flex-shrink-0 m-3" >
 
-    <div class="mx-auto p-2">
+    <div class="p-2 row">
 
+        <div class="col-md-6 mx-auto">
     <h2 class="mt-3">Login</h2>
         <%
             Boolean loggedOut = (Boolean) request.getAttribute("loggedOut");
@@ -33,6 +34,7 @@
 
         <input class="btn btn-primary" type="submit" value="Log In" />
     </form>
+        </div>
 
     </div>
 </main>

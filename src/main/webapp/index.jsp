@@ -42,6 +42,7 @@
                 <ul>
                     <li><a href="ch05/shop">Shopping Cart</a></li>
                     <li><a href="support/tickets">Support Tickets</a></li>
+                    <li><a href="songs">Ch. 5 Homework</a></li>
                 </ul>
 
                 <ll class="m-2"><h3>Chapter 6</h3></ll>

@@ -59,6 +59,10 @@ public class UserProfileServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("a", "session");
 
+        User newUser = new User();
+        session.setAttribute("user2", newUser);
+
+
         Map<Long, Character> vowels = new HashMap<>();
         vowels.put(1L, 'A');
         vowels.put(2L, 'E');

@@ -56,7 +56,13 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             request.changeSessionId();
-            response.sendRedirect(request.getContextPath());
+
+            if (session.getAttribute("pageBeforeLogIn") != null){
+                response.sendRedirect(request.getContextPath() + "/" + session.getAttribute("pageBeforeLogIn").toString());
+            }else {
+                response.sendRedirect(request.getContextPath());
+            }
+
         }
     }
 }

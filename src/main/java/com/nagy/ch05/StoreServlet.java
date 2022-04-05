@@ -159,8 +159,6 @@ public class StoreServlet extends HttpServlet {
         // send the user to the page where they can view the cart
         response.sendRedirect("shop?page=viewCart");
 
-
-
     }
 
     private void viewCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
