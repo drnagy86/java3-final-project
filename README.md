@@ -24,6 +24,9 @@ For this chapter, we learned about HTTP sessions. Sessions are how web apps are 
 
 I didn’t know a lot about sessions before so it was helpful to see how a browser tracks that. I use developer tools often in Chrome but haven't explored it fully. 
 
+## Chapter 6
+
+Chapter 6 was about Expression Language in JSPs. It is a nice convenience feature for the language and seems cleaner than scriplets. I think it also doesn’t abstract away what is going on so much that it makes it hard to understand. I don’t have much of a problem with scriptlets because I find them easy to follow because it is very explicit about what the code is doing on the JSP page. It is nice to have some diversity of choice and know about the options so that I would be prepared to work with a front-end developer or company that has a style rule where they prefer one over the other.
 
 
 

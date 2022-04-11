@@ -4,6 +4,18 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <display-name>Java 3 Final Project</display-name>
+
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <include-prelude>/WEB-INF/base.jspf</include-prelude>
+            <default-content-type>text/html</default-content-type>
+        </jsp-property-group>
+    </jsp-config>
+
+
+
     <session-config>
         <session-timeout>30</session-timeout>
         <cookie-config>

@@ -14,7 +14,7 @@
         %>
 
         <%}%>
-    <p>You must log in to access the customer support site.</p>
+    <p>You must log in to access this part of the site. For testing purposes, the username is "Marc" and the password is "password".</p>
     <form method="POST" action="login">
         <label class="form-label" for="username">Username</label>
         <input class="form-control" type="text" name="username" id="username" /><br><br>
