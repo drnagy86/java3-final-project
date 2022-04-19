@@ -1,4 +1,4 @@
-package com.nagy.ch07;
+package com.nagy.ch05.ch07;
 
 import com.nagy.ch06.User;
 

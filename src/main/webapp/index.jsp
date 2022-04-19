@@ -1,11 +1,3 @@
-<%--<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
-<%--<!DOCTYPE html>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>JSP - Hello World</title>--%>
-<%--    <link href="/styles/main.css" rel=\"stylesheet\"/>--%>
-<%--</head>--%>
-<%--<body>--%>
 
 <jsp:include page="WEB-INF/include/header-homepage.jsp" />
 
@@ -38,16 +30,18 @@
                     <li><a href="ch04/voice-in">ch04/voice-in</a></li>
                     <li><a href="TemperatureConverterCh04b">Temperature Converter MVC Style</a></li>
                 </ul>
-                <ll class="m-2"><h3>Chapter 5</h3></ll>
+                <li class="m-2"><h3>Chapter 5</h3></li>
                 <ul>
                     <li><a href="ch05/shop">Shopping Cart</a></li>
                     <li><a href="support/tickets">Support Tickets</a></li>
                     <li><a href="songs">Ch. 5 Homework</a></li>
                 </ul>
 
-                <ll class="m-2"><h3>Chapter 6</h3></ll>
+                <li class="m-2"><h3>Chapter 6</h3></li>
                 <ul>
-                    <li><a href="user/profile">User Profile</a></li>
+                    <li><a href="user/profile">In Class User Profile</a></li>
+                    <li><a href="support/register">Homework: Profile Page and Message Registration</a></li>
+                    <li><a href="support/sendMessages">Homework: Admin send messages to all registered users</a></li>
                 </ul>
 
 
@@ -55,6 +49,8 @@
 
             </ul>
         </div>
+
+
 
     </div>
 

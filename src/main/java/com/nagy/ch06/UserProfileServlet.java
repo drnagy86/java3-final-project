@@ -17,26 +17,24 @@ public class UserProfileServlet extends HttpServlet {
     private final List<User> users = new ArrayList<>();
     private final User[] usersArr = new User[2];
 
+    // /songs?go=edit
+
     @Override
     public void init() throws ServletException {
-        User user1 = new User(1L,"derrick.nagy@kirkwood.edu", "Derrick", "Nagy");
+        User user1 = new User(1L,"derrick.nagy@kirkwood.edu", "Derrick", "Nagy", "2813899902", "password");
         Map<String, Boolean> permissions = new HashMap<>();
-
         permissions.put("active", true);
         permissions.put("admin", true);
         user1.setPermissions(permissions);
         users.add(user1);
         usersArr[0] = user1;
 
-
-        User user2 = new User(2L,"random@kirkwood.edu", "Ran", "Dom");
+        User user2 = new User(2L,"random@kirkwood.edu", "Ran", "Dom", "1234567890", "P@ssw0rd");
         Map<String, Boolean> permissions2 = new HashMap<>();
         permissions2.put("active", true);
         permissions2.put("admin", false);
         user2.setPermissions(permissions2);
-
         users.add(user2);
-
         usersArr[1] = user2;
     }
 

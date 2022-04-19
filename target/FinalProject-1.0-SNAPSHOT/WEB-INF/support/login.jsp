@@ -15,11 +15,16 @@
 
         <%}%>
     <p>You must log in to access this part of the site. For testing purposes, the username is "Marc" and the password is "password".</p>
-    <form method="POST" action="login">
+<p>Or <a href="${pageContext.request.contextPath}/support/register?go=register">register</a> to create a new account.</p>
+
+
+    <form method="POST" action="login" class="mt-3">
         <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" name="username" id="username" /><br><br>
+<%--        <input class="form-control" type="text" name="username" id="username" /><br><br>--%>
+        <input class="form-control" type="text" name="username" id="username" value="derrick.nagy@kirkwood.edu" /><br><br>
         <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" name="password" id="password" /><br><br>
+<%--        <input class="form-control" type="password" name="password" id="password" /><br><br>--%>
+        <input class="form-control" type="password" name="password" id="password" value="P@ssw0rd" /><br><br>
 
         <%
             Boolean loginFailed = (Boolean)request.getAttribute("loginFailed");
@@ -33,8 +38,11 @@
 
 
         <input class="btn btn-primary" type="submit" value="Log In" />
+
     </form>
+
         </div>
+
 
     </div>
 </main>

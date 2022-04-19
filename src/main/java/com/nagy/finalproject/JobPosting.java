@@ -1,10 +1,11 @@
 package com.nagy.finalproject;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class JobPosting implements Comparable<JobPosting> {
+public class JobPosting implements Comparable<JobPosting>, Serializable {
     private int id;
     private boolean active;
     private LocalDate dateCreated;
@@ -15,6 +16,8 @@ public class JobPosting implements Comparable<JobPosting> {
     private String department;
     private String experience;
     private String wageCategory;
+
+    // should be Big Decimal
     private double salary;
 
     // default values
@@ -139,6 +142,22 @@ public class JobPosting implements Comparable<JobPosting> {
 
     }
 
+    @Override
+    public String toString() {
+        return "JobPosting{" +
+                "id=" + id +
+                ", active=" + active +
+                ", dateCreated=" + dateCreated +
+                ", title='" + title + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", fullTime=" + fullTime +
+                ", department='" + department + '\'' +
+                ", experience='" + experience + '\'' +
+                ", wageCategory='" + wageCategory + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
 
     @Override
     public int compareTo(JobPosting o) {

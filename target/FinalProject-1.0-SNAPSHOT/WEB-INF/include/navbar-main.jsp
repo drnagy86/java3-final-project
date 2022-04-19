@@ -1,3 +1,6 @@
+<%@ page import="com.nagy.ch06.User" %>
+<%@ page import="java.util.Map" %>
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -13,15 +16,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/ch05/shop">Ch05</a>
                     </li>
+
                 </ul>
                 <ul class="mb-auto navbar-nav me-1">
                     <% if (session.getAttribute("username") != null) {%>
                     <li class="nav-item">
-                        <a class="nav-link" href="support/login?logout" >Logout</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/support/register">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/support/login?logout" >Logout</a>
                     </li>
                     <% } else {%>
                     <li class="nav-item">
-                        <a class="nav-link" href="support/login" >Login</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/support/login" >Login</a>
                     </li>
                     <% } %>
                 </ul>
