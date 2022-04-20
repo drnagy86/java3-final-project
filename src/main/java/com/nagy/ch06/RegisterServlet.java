@@ -42,8 +42,6 @@ public class RegisterServlet extends HttpServlet {
         }
         // add log in
 
-        System.out.println(go);
-
         switch (go) {
             case "register":
                 registerNewUser(request,response);
@@ -60,11 +58,57 @@ public class RegisterServlet extends HttpServlet {
                 // support/register?go=message&messageToSend=whatever
                 sendMessages(request, response);
                 break;
+            case "profile":
+                // support/register?go=message&messageToSend=whatever
+                profileDetails(request, response);
+                break;
             default:
                 // log in
                 editProfile(request, response);
                 break;
         }
+    }
+
+    private void profileDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("username")== null){
+            response.sendRedirect("login");
+            session.setAttribute("pageBeforeLogIn", "/support/register?go=profile");
+            return;
+        }
+
+        // find user
+        String userToFind = (String) session.getAttribute("username");
+        User currentUser = null;
+        String errors = "";
+
+
+        for(User user : USER_DB){
+            String currentUserName = user.getUsername();
+            if (currentUserName.equals(userToFind)){
+                currentUser = user;
+                break;
+            }
+        }
+
+        if (currentUser == null){
+            //set error message
+            errors += "Can not find user information.<br>";
+        }
+
+        // find out if user is admin
+        boolean isAdmin = false;
+        Map<String, Boolean> permissions = currentUser.getPermissions();
+        if (!permissions.isEmpty())isAdmin = permissions.get("admin");
+
+
+        request.setAttribute("isAdmin", isAdmin);
+        request.setAttribute("user", currentUser);
+        request.setAttribute("errorMessage", errors);
+        request.getRequestDispatcher("/WEB-INF/ch06/profileDetails.jsp").forward(request,response);
+
+
     }
 
     private void sendMessages(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -76,17 +120,10 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-
         String phone = "";
         String messageToSend = request.getParameter("messageToSend");
 
-
-        System.out.println(messageToSend);
-
         request.getRequestDispatcher("/WEB-INF/ch06/register.jsp").forward(request,response);
-
-
-
 
     }
 

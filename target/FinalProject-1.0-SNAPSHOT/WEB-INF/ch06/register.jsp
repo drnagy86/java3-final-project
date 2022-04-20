@@ -2,10 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../include/header-homepage.jsp" />
 <main class="flex-shrink-0 m-3" >
-
-
     <div class="row">
-
         <div class="col-md-10 mx-auto">
             <c:if test="${fn:length(errorMessage) > 0}">
                 <div class="alert alert-dismissible alert-danger">

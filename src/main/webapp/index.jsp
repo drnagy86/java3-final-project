@@ -40,12 +40,10 @@
                 <li class="m-2"><h3>Chapter 6</h3></li>
                 <ul>
                     <li><a href="user/profile">In Class User Profile</a></li>
-                    <li><a href="support/register">Homework: Profile Page and Message Registration</a></li>
+                    <li><a href="support/register?go=profile">Homework: Profile Page</a></li>
+                    <li><a href="support/register">Homework: Registration</a></li>
                     <li><a href="support/sendMessages">Homework: Admin send messages to all registered users</a></li>
                 </ul>
-
-
-            <%--                user/profile--%>
 
             </ul>
         </div>

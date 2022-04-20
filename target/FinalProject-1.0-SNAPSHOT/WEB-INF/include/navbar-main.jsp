@@ -21,7 +21,7 @@
                 <ul class="mb-auto navbar-nav me-1">
                     <% if (session.getAttribute("username") != null) {%>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/support/register">Profile</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/support/register?go=profile">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}/support/login?logout" >Logout</a>

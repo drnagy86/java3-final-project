@@ -50,6 +50,12 @@ public class User implements Serializable, Comparable<User> {
         this.balance = BigDecimal.ZERO;
         this.password = "";
 
+        Map<String, Boolean> permissions = new HashMap<>();
+        permissions.put("active", true);
+        permissions.put("admin", false);
+
+        this.permissions = permissions;
+
     }
 
     public User(long userId, String username, String firstName, String lastName) {
