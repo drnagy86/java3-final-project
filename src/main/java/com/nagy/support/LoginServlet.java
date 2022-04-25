@@ -90,9 +90,8 @@ public class LoginServlet extends HttpServlet {
             if (session.getAttribute("pageBeforeLogIn") != null){
                 response.sendRedirect(request.getContextPath() + "/" + session.getAttribute("pageBeforeLogIn").toString());
             }else {
-                response.sendRedirect(request.getContextPath());
+                response.sendRedirect(request.getContextPath() + "/support/register?go=profile");
             }
-
         }
     }
 }
