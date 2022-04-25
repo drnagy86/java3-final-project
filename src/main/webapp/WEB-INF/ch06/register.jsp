@@ -52,15 +52,15 @@
                         <div class="form-group col-md-4 mx-auto">
                             <label for="phoneNumber" class="form-label">Phone Number: </label>
                             <input name="phoneNumber" id="phoneNumber" class="form-control" type="text" value="${user.phoneNumber}"/>
-                            <div class="row">
-                                <p>Make sure your phone is verified with a text message sent to your phone. Edit number and save before testing.</p>
-                            </div>
-                            <div class="row">
-                                <a class="btn btn-outline-dark mt-2 " href="${pageContext.request.contextPath}/support/register?go=testPhone&phone=${user.phoneNumber}">Test</a>
-                                <c:if test="${smsSuccess}">
-                                    <p class="text-primary">Message successfully sent. If you didn't receive it, please try to edit your number.</p>
-                                </c:if>
-                            </div>
+<%--                            <div class="row">--%>
+<%--                                <p>Make sure your phone is verified with a text message sent to your phone. Edit number and save before testing.</p>--%>
+<%--                            </div>--%>
+<%--                            <div class="row">--%>
+<%--                                <a class="btn btn-outline-dark mt-2 " href="${pageContext.request.contextPath}/support/register?go=testPhone&phone=${user.phoneNumber}">Test</a>--%>
+<%--                                <c:if test="${smsSuccess}">--%>
+<%--                                    <p class="text-primary">Message successfully sent. If you didn't receive it, please try to edit your number.</p>--%>
+<%--                                </c:if>--%>
+<%--                            </div>--%>
 
                         </div>
                         <div class="form-group col-md-4 mx-auto">

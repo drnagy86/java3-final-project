@@ -41,10 +41,19 @@
                 <ul>
                     <li><a href="user/profile">In Class User Profile</a></li>
                     <li><a href="support/register?go=profile">Homework: Profile Page</a></li>
+                    <li><a href="support/register?go=edit">Homework: Edit Profile Page</a></li>
                     <li><a href="support/register">Homework: Registration</a></li>
                     <li><a href="support/sendMessages">Homework: Admin send messages to all registered users</a></li>
                 </ul>
+                <li class="m-2"><h3>Chapter 7</h3></li>
+                <ul>
+                    <li><a href="ch07/list">In Class: List</a></li>
+                    <li><a href="ch07/list?lang=fr">In Class: List in French</a></li>
+                    <li><a href="tysql.jsp">In Class: Teach Yourself SQL database</a></li>
 
+                </ul>
+
+<%--                list?lang=fr--%>
             </ul>
         </div>
 

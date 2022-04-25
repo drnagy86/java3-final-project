@@ -59,12 +59,9 @@ public class RegisterServlet extends HttpServlet {
                 sendMessages(request, response);
                 break;
             case "profile":
-                // support/register?go=message&messageToSend=whatever
-                profileDetails(request, response);
-                break;
             default:
                 // log in
-                editProfile(request, response);
+                profileDetails(request, response);
                 break;
         }
     }
@@ -192,8 +189,8 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("smsError", false);
                 request.setAttribute("smsSuccess", true);
             } catch (final ApiException e) {
-                System.out.println(e.getMessage());
-                request.setAttribute("errorMsg", "Message failed to send. Try again later.");
+//                System.out.println(e.getMessage());
+                request.setAttribute("errorMsg", "Message failed to send.<br>" + e.getMessage());
                 request.setAttribute("smsError", true);
                 request.setAttribute("smsSuccess", false);
             }
@@ -202,9 +199,10 @@ public class RegisterServlet extends HttpServlet {
 
         request.setAttribute("user", currentUser);
         request.setAttribute("errorMessage", errors);
-        request.getRequestDispatcher("/WEB-INF/ch06/register.jsp").forward(request,response);
+//        request.getRequestDispatcher("/WEB-INF/ch06/register.jsp").forward(request,response);
 
-        request.getRequestDispatcher("/WEB-INF/ch06/register.jsp").forward(request,response);
+//        request.getRequestDispatcher("/WEB-INF/ch06/register.jsp").forward(request,response);
+        profileDetails(request,response);
 
     }
 

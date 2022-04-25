@@ -1,16 +1,18 @@
-package com.nagy.ch05.ch07;
+package com.nagy.ch07;
 
 import com.nagy.ch06.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
+import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -28,6 +30,14 @@ public class ListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String language = request.getParameter("lang");
+        if (language == null){
+            language = "English";
+        }
+        if (language.equalsIgnoreCase("fr") || language.equalsIgnoreCase("french")){
+            Config.set(request, Config.FMT_LOCALE, Locale.FRANCE);
+        }
 
         request.setAttribute("contacts", contacts);
         request.getRequestDispatcher("/WEB-INF/ch07/list.jsp").forward(request, response);

@@ -2,3 +2,8 @@
 :root {
     /*--bs-primary-rgb: 69, 69, 69;*/
 }
+
+
+.row-height-30 {
+    height: 30px;
+}

@@ -19,8 +19,10 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        Users users = new Users();
-        USER_DB = users.THE_USER_DB;
+        //Users users = new Users();
+        Users.populateDB();
+        USER_DB = Users.THE_USER_DB;
+
 //        users.put("Marc", "password");
 //        users.put("Amy", "password");
 //        users.put("derrick.nagy@kirkwood.edu", "password");

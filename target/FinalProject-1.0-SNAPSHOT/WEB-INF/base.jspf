@@ -2,3 +2,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+
+<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/tysql" user="root" password="password"/>
+
+
+<%--<c:choose>--%>
+<%--    <c:when test='${host.equals("local")}'>--%>
+<%--        <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/tysql" user="root" password="password"/>--%>
+<%--    </c:when>--%>
+<%--    <c:otherwise>--%>
+<%--        <sql:setDataSource var="db" driver="org.postgresql.Driver" url="jdbc:postgresql://ec2-XXX-XXX-XXX-XXX.compute-1.amazonaws.com:5432/XXXXXXXXXXXX" user="XXXXXXXXXXXXX" password="XXXXXXXXX"/>--%>
+<%--    </c:otherwise>--%>
+<%--</c:choose>--%>
+
+
+<%--set up enivornment variables--%>

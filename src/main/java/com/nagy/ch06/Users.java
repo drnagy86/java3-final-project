@@ -22,7 +22,7 @@ public final class Users {
             THE_USER_DB.add(user1);
             //usersArr[0] = user1;
 
-            User user2 = new User(AUTO_INCREMENT_USER_ID++,"random@kirkwood.edu", "Ran", "Dom", "1234567890", "P@ssw0rd");
+            User user2 = new User(AUTO_INCREMENT_USER_ID++,"random@kirkwood.edu", "Ran", "Dom", "3199300505", "P@ssw0rd");
             Map<String, Boolean> permissions2 = new HashMap<>();
             permissions2.put("active", true);
             permissions2.put("admin", false);
@@ -31,7 +31,7 @@ public final class Users {
             THE_USER_DB.add(user2);
 
 
-            User user3 = new User(AUTO_INCREMENT_USER_ID++,"marc@school.com", "Marc", "Hauschildt", "1234567890", "P@ssw0rd");
+            User user3 = new User(AUTO_INCREMENT_USER_ID++,"marc@school.com", "Marc", "Hauschildt", "3198048573", "P@ssw0rd");
             Map<String, Boolean> permissions3 = new HashMap<>();
 
             permissions3.put("active", true);

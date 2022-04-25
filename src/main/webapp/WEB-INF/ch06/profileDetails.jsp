@@ -53,9 +53,16 @@
                             <p id="phoneNumber">${user.phoneNumber}</p>
                         </div>
                         <div class="col-md-4 mx-auto">
-                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/support/register">Edit Profile</a>
+                            <a class="btn btn-outline-dark mt-2 " href="${pageContext.request.contextPath}/support/register?go=testPhone&phone=${user.phoneNumber}">Test Phone Number</a>
+                            <div class="row-height-30">
+                            <c:if test="${smsSuccess}">
+                                <p class="text-primary">Message successfully sent. If you didn't receive it, please try to edit your number.</p>
+                            </c:if>
+                            </div>
                         </div>
-
+                        <div class="col-md-4 mx-auto mt-2">
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/support/register?go=edit">Edit Profile</a>
+                        </div>
                     </div>
                 </div>
             </div>
