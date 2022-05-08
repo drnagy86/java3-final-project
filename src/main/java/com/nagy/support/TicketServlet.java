@@ -81,7 +81,6 @@ public class TicketServlet extends HttpServlet {
         request.setAttribute("ticketSubmitted", true);
         request.getRequestDispatcher("/WEB-INF/support/ticketForm.jsp").forward(request, response);
 
-//        response.sendRedirect("tickets?action=view&ticketId=" + id);
     }
 
     private void downloadAttachment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

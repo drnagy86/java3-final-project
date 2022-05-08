@@ -21,7 +21,7 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h4 class="mb-1 text-pink">${jobPost.title}</h4>
                         <small>
-                            <fmt:formatDate value="${jobPost.dateCreatedAsDate}" type="date" dateStyle="medium"/>
+                            Posted: <fmt:formatDate value="${jobPost.dateCreatedAsDate}" type="date" dateStyle="medium"/>
                         </small>
                     </div>
                     <p class="mb-1">${jobPost.jobStatement}</p>

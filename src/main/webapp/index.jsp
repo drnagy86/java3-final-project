@@ -54,6 +54,13 @@
                 <li class="m-2"><h3>Final Project</h3></li>
                 <ul>
                     <li><a href="<c:url value="final/jobs"/>">Job Postings</a></li>
+                    <li><a
+                            href="
+                                <c:url value="/final/jobs">
+                                    <c:param name="go" value="applications"/>
+                                </c:url>"
+
+                            >Job Applications</a></li>
                 </ul>
 
 <%--                list?lang=fr--%>

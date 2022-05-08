@@ -39,6 +39,9 @@ public class Attachment {
             attachment.setName(part.getSubmittedFileName());
             attachment.setContents(outputStream.toByteArray());
         }
+        catch (IOException ex) {
+            throw new IOException("Problem processing the file \n" + ex.getMessage());
+        }
         return attachment;
     }
 }

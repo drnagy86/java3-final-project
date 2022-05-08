@@ -18,8 +18,6 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
     private Attachment resume;
 
     public static final int DEFAULT_JOB_APP_ID = 0;
-    public static JobPosting DEFAULT_JOB_POSTING = new JobPosting();
-    public static User DEFAULT_APPLICANT = new User();
     public static final String DEFAULT_ADDRESS = "123 Fake Street";
     public static final String DEFAULT_CITY = "Fake City";
     public static final String DEFAULT_STATE = "Iowa";
@@ -30,8 +28,8 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
     public JobApplication() {
 
         this.jobApplicationID = DEFAULT_JOB_APP_ID;
-        this.jobPosting = DEFAULT_JOB_POSTING;
-        this.applicant = DEFAULT_APPLICANT;
+        this.jobPosting = new JobPosting();
+        this.applicant = new User();
         this.address = DEFAULT_ADDRESS;
         this.city = DEFAULT_CITY;
         this.state = DEFAULT_STATE;

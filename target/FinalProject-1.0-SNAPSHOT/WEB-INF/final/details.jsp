@@ -44,9 +44,9 @@
 
     <div class="row m-3">
         <div class="col-md"></div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="row">
-                <div class="col-md-3 me-auto">
+                <div class="col-md-4 me-auto">
                     <strong>Title:</strong>
                 </div>
                 <div class="col-md me-auto">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 me-auto">
+                <div class="col-md-4 me-auto">
                     <strong>Date Posted:</strong>
                 </div>
                 <div class="col-md me-auto">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 me-auto">
+                <div class="col-md-4 me-auto">
                     <strong>Department:</strong>
                 </div>
                 <div class="col-md me-auto">
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 me-auto">
+                <div class="col-md-4 me-auto">
                     <strong>Wage Category:</strong>
                 </div>
                 <div class="col-md me-auto">
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 me-auto">
+                <div class="col-md-4 me-auto">
                     <strong>Reports to:</strong>
                 </div>
                 <div class="col-md me-auto">
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 me-auto">
+                <div class="col-md-4 me-auto">
                     <strong>Location:</strong>
                 </div>
                 <div class="col-md me-auto">
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 me-auto">
+                <div class="col-md-4 me-auto">
                     <strong>Salary Range:</strong>
                 </div>
                 <div class="col-md me-auto">
@@ -130,14 +130,14 @@
 
         </div>
         <div class="col-md-4">
-            <form method="post" action="
+            <form enctype="multipart/form-data" method="POST" action="
                 <c:url value="/final/jobs">
                     <c:param name="go" value="apply"/>
-                </c:url>
-">
+                </c:url>">
+                <input name="jobID" type="hidden" value="${job.id}" >
                 <strong>Apply for this position</strong>
                 <div class="d-flex flex-row mb-2">
-                    <small>REQUIRED</small>
+                    <small>REQUIRED </small>
                     <p class="text-pink">*</p>
                 </div>
                 <div class="my-2">
@@ -149,11 +149,11 @@
                     <input name="lastName" id="lastName" type="text" class="form-control">
                 </div>
                 <div class="my-2">
-                    <label for="emailAddress" class="form-label">Email<span class="text-pink">*</span></label>
+                    <label for="emailAddress" class="form-label">Email <span class="text-pink">*</span></label>
                     <input name="emailAddress" id="emailAddress" type="email" class="form-control">
                 </div>
                 <div class="my-2">
-                    <label for="address" class="form-label">Address<span class="text-pink">*</span></label>
+                    <label for="address" class="form-label">Address <span class="text-pink">*</span></label>
                     <input name="address" id="address" type="text" class="form-control mb-2" placeholder="Address">
                     <div class="d-flex">
                         <input name="city" id="city" type="text" class="form-control me-2" placeholder="City">
@@ -161,27 +161,19 @@
                         <input name="postal" id="postal" type="text" class="form-control w-50" placeholder="Postal">
                     </div>
                 </div>
-                <div class="d-flex flex-row my-2">
-                    <div class="flex-column">
-                        <label for="coverLetter" class="form-label">Cover Letter</label>
-                        <button name="coverLetter" id="coverLetter" type="button"
-                                class="btn btn-outline-dark me-1">
-                            Upload
-                        </button>
-                    </div>
-                    <div class="flex-column ms-2">
-                        <label for="resume" class="form-label">Resume<span class="text-pink">*</span></label>
-                        <button name="resume" id="resume" type="button" class="btn btn-outline-dark">
-                            Upload
-                        </button>
+                <div class="row my-2">
+                    <label for="coverLetter" class="form-label col-sm-3 me-auto">Cover Letter</label>
+                    <input name="coverLetter" id="coverLetter" type="file"
+                           class="btn btn-outline-dark ms-auto me-3 col">
 
-                    </div>
                 </div>
-
-
+                <div class="row my-2">
+                    <label for="resume" class="form-label col-sm-3 me-auto">Resume <span class="text-pink">*</span></label>
+                    <input name="resume" id="resume" type="file" class="btn btn-outline-dark ms-auto me-3 col">
+                </div>
                 <div class="my-3">
                     <div class="row">
-                        <input type="submit" class="btn btn-pink mx-3" value="SUBMIT APPLICATION">
+                        <input type="submit" class="btn btn-pink mx-3 " value="SUBMIT APPLICATION">
                     </div>
                 </div>
 

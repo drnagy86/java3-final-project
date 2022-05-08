@@ -15,6 +15,16 @@
                 <p class="text-white">${errorMsg}</p>
             </div>
         </c:if>
+
+        <c:if test="${fn:length(successMessage) > 0}">
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong class="text-white">Excellent!</strong>
+                <p class="text-white">${successMessage}</p>
+            </div>
+        </c:if>
+
+
     </div>
 </div>
 

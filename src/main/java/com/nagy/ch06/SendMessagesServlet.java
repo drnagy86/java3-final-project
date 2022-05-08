@@ -63,7 +63,7 @@ public class SendMessagesServlet extends HttpServlet {
         boolean isAdmin = false;
 
         Map<String, Boolean> permissions = currentUser.getPermissions();
-        if (!permissions.isEmpty())isAdmin = permissions.get("admin");
+        if (!permissions.isEmpty()) isAdmin = permissions.get("admin");
 
 
         request.setAttribute("isAdmin", isAdmin);

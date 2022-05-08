@@ -19,7 +19,6 @@ import java.util.Map;
 public class RegisterServlet extends HttpServlet {
 
     private List<User> USER_DB = null;
-    //Users _users = null;
     Dotenv dotenv = Dotenv.load();
     public final String TWILIO_PHONE = dotenv.get("TWILIO_PHONE");
     public final String TWILIO_SID = dotenv.get("TWILIO_SID");
@@ -27,7 +26,6 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-
         Users.populateDB();
         USER_DB = Users.THE_USER_DB;
     }

@@ -169,37 +169,125 @@ class JobApplicationTest {
 
     @Test
     void getState() {
+        // arrange
+        final String expected = JobApplication.DEFAULT_STATE;
+        String actual = "";
+
+        // assert
+        actual = jobApplication.getState();
+
+        // assert
+        assertEquals(expected, actual);
     }
 
     @Test
     void setState() {
+
+        // arrange
+        final String expected = "Test";
+        String actual = "";
+
+        // assert
+        jobApplication.setState("Test");
+        actual = jobApplication.getState();
+
+        // assert
+        assertEquals(expected, actual);
     }
 
     @Test
     void getPostal() {
+        // arrange
+        final int expected = JobApplication.DEFAULT_POSTAL;
+        int actual = 0;
+
+        // assert
+        actual = jobApplication.getPostal();
+
+        // assert
+        assertEquals(expected, actual);
     }
 
     @Test
     void setPostal() {
+        // arrange
+        final int expected = 52240;
+        int actual = 0;
+
+        // assert
+        jobApplication.setPostal(52240);
+        actual = jobApplication.getPostal();
+
+        // assert
+        assertEquals(expected, actual);
     }
 
     @Test
-    void getCoverLetter() {
+    void testCompareToJobApplicationLastNameBeforeOther() {
+
+        JobApplication other = new JobApplication();
+        other.getApplicant().setLastName("Z");
+
+        // act
+        int result = jobApplication.compareTo(other);
+
+        // assert
+        assertTrue(result < 0);
     }
 
     @Test
-    void setCoverLetter() {
+    void testCompareToJobApplicationLastNameAfterOther() {
+
+        JobApplication other = new JobApplication();
+        other.getApplicant().setLastName("A");
+
+        // act
+        int result = jobApplication.compareTo(other);
+
+        // assert
+        assertTrue(result > 0);
     }
 
     @Test
-    void getResume() {
+    void testCompareToJobApplicationLastNameSameAsOtherFirstNameBeforeOther() {
+
+        JobApplication other = new JobApplication();
+        other.getApplicant().setLastName("F");
+        other.getApplicant().setLastName("Z");
+
+        // act
+        int result = jobApplication.compareTo(other);
+
+        // assert
+        assertTrue(result < 0);
     }
 
     @Test
-    void setResume() {
+    void testCompareToJobApplicationLastNameSameAsOtherFirstNameAfterOther() {
+
+        JobApplication other = new JobApplication();
+        other.getApplicant().setLastName("F");
+        other.getApplicant().setLastName("A");
+
+        // act
+        int result = jobApplication.compareTo(other);
+
+        // assert
+        assertTrue(result > 0);
     }
 
+
     @Test
-    void compareTo() {
+    void testCompareToJobApplicationLastNameSameAsOtherFirstNameSameAsOther() {
+
+        JobApplication other = new JobApplication();
+        other.getApplicant().setLastName("F");
+        other.getApplicant().setLastName("F");
+
+        // act
+        int result = jobApplication.compareTo(other);
+
+        // assert
+        assertTrue(result == 0);
     }
 }

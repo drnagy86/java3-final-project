@@ -42,8 +42,8 @@ public class User implements Serializable, Comparable<User> {
     public User(){
         this.userId = 0L;
         this.username = "";
-        this.firstName = "";
-        this.lastName = "";
+        this.firstName = "F";
+        this.lastName = "F";
         this.phoneNumber = "";
         this.birthday = LocalDate.now();
         this.lastUpdated = Instant.now();
