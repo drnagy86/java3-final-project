@@ -5232,8 +5232,8 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #008cba;
-  border-color: #0079a1;
+  background-color: var(--bs-pink);
+  border-color: var(--bs-pink);
 }
 
 .page-item.disabled .page-link {
@@ -8382,6 +8382,11 @@ fieldset:disabled .btn {
   color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-pink {
+  --bs-text-opacity: 1;
+  color: var(--bs-pink) !important;
+}
+
 .text-secondary {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
@@ -11456,6 +11461,11 @@ fieldset:disabled .btn {
   border-color: #007ea7;
 }
 
+.btn-pink {
+  border-color: var(--bs-pink);
+  background-color: var(--bs-pink);
+  color: #eeeeee;
+}
 .btn-secondary {
   border-color: #d6d6d6;
 }

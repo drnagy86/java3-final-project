@@ -50,7 +50,10 @@
                     <li><a href="ch07/list">In Class: List</a></li>
                     <li><a href="ch07/list?lang=fr">In Class: List in French</a></li>
                     <li><a href="tysql.jsp">In Class: Teach Yourself SQL database</a></li>
-
+                </ul>
+                <li class="m-2"><h3>Final Project</h3></li>
+                <ul>
+                    <li><a href="<c:url value="final/jobs"/>">Job Postings</a></li>
                 </ul>
 
 <%--                list?lang=fr--%>
