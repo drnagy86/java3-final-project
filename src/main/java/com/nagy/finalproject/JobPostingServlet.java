@@ -3,6 +3,7 @@ package com.nagy.finalproject;
 import com.nagy.ch06.User;
 import com.nagy.ch06.Users;
 import com.nagy.support.Attachment;
+import com.nagy.support.Ticket;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -44,6 +45,8 @@ public class JobPostingServlet extends HttpServlet {
             case "applications":
                 applications(request, response);
                 break;
+            case "downloadAttachment":
+                downloadAttachment(request, response);
             case "list":
             default:
                 viewAllJobPostings(request,response);
@@ -62,7 +65,7 @@ public class JobPostingServlet extends HttpServlet {
         // find user
         String userToFind = (String) session.getAttribute("username");
         User currentUser = null;
-        String errors = "";
+        String errors = (String) session.getAttribute("errorMessage");
 
         for(User user : Users.THE_USER_DB){
             String currentUserName = user.getUsername();
@@ -84,7 +87,6 @@ public class JobPostingServlet extends HttpServlet {
         if (!permissions.isEmpty()) isAdmin = permissions.get("admin");
 
 
-
         request.setAttribute("applications", jobApplicationManager.retrieveJobApplications());
 
         request.setAttribute("isAdmin", isAdmin);
@@ -95,10 +97,58 @@ public class JobPostingServlet extends HttpServlet {
 
     }
 
+    private void downloadAttachment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // login
+
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username")== null){
+            response.sendRedirect("../support/login");
+            session.setAttribute("pageBeforeLogIn", "final/jobs?go=applications");
+            return;
+        }
+        String errors = (String) session.getAttribute("errorMessage");
+        String toDownLoad = (String) session.getAttribute("toDownLoad");
+
+        boolean wantResume = (toDownLoad == "resume") ? true : false;
+
+        JobApplication jobApplication = null;
+
+        try {
+            int jobApplicationID = Integer.parseInt(request.getParameter("id"));
+            jobApplication = jobApplicationManager.retrieveJobApplication(jobApplicationID);
+
+        } catch (Exception ex){
+            errors += "Problem finding the job application. ";
+        }
+
+        Attachment attachment = null;
+        try{
+            attachment = (wantResume) ? jobApplication.getResume() : jobApplication.getCoverLetter();
+        } catch (Exception ex){
+            errors += "Problem finding the download. ";
+        }
+
+        if (jobApplication != null && attachment != null){
+
+            response.setHeader("Content-Disposition", "attachment; filename=" + attachment.getName());
+            response.setContentType("application/octet-stream");
+            try(ServletOutputStream stream = response.getOutputStream()) {
+                stream.write(attachment.getContents());
+            } catch (Exception ex){
+                errors += "There was a problem downloading the file. ";
+            }
+        }
+
+        request.setAttribute("errorMessage", errors);
+        applications(request, response);
+    }
+
     private void applyToJob(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String errors = "";
+
         String success = "";
         HttpSession session = request.getSession();
+        String errors = (String) session.getAttribute("errorMessage");
         boolean noErrors = true;
         JobApplication jobApplication = null;
 
@@ -165,6 +215,7 @@ public class JobPostingServlet extends HttpServlet {
         }
 
         if (noErrors){
+            jobApplicationManager.createJobApplication(jobApplication);
             success = "Your application has been submitted. Thank you and please wait to be contacted.";
         }
 
