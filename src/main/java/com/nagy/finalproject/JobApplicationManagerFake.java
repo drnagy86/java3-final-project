@@ -30,8 +30,8 @@ public class JobApplicationManagerFake implements IJobApplicationManager {
                     JobApplication.DEFAULT_CITY,
                     JobApplication.DEFAULT_STATE,
                     JobApplication.DEFAULT_POSTAL,
-                    new Attachment(),
-                    new Attachment()
+                    null,
+                    null
             ));
         }
     }

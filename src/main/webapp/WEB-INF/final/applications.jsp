@@ -57,6 +57,7 @@
                         </p>
                     </td>
                     <td>
+                        <c:if test="${application.coverLetter != null}">
                         <a class="text-pink"
                            href="
                             <c:url value="/final/jobs">
@@ -67,8 +68,13 @@
                         >
                             Cover Letter
                         </a>
+                        </c:if>
+                        <c:if test="${application.coverLetter == null}">
+                            No cover letter
+                        </c:if>
                     </td>
                     <td>
+                        <c:if test="${application.resume != null}">
                         <a class="text-pink"
                            href="
                             <c:url value="/final/jobs">
@@ -79,6 +85,10 @@
                         >
                             Resume
                         </a>
+                        </c:if>
+                        <c:if test="${application.resume == null}">
+                            No resume
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>
