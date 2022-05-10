@@ -1,3 +1,4 @@
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../include/header-homepage.jsp"/>
 <main class="flex-shrink-0 m-3">
@@ -83,6 +84,9 @@
             </c:forEach>
             </tbody>
         </table>
+
+
+
 
     </div>
 

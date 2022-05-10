@@ -1,6 +1,7 @@
 package com.nagy.finalproject;
 
 import com.nagy.ch06.Users;
+import com.nagy.support.Attachment;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,17 +22,16 @@ public class JobApplicationManagerFake implements IJobApplicationManager {
             Users.populateDB();
 
             fakeJobApplicationList.add(new JobApplication());
-
             fakeJobApplicationList.add(new JobApplication(
                     getNextAvailableId(),
-                    jobPostManagerFake.retrieveJobPost(100001),
+                    jobPostManagerFake.retrieveJobPost(100008),
                     Users.THE_USER_DB.get(0),
                     JobApplication.DEFAULT_ADDRESS,
                     JobApplication.DEFAULT_CITY,
                     JobApplication.DEFAULT_STATE,
                     JobApplication.DEFAULT_POSTAL,
-                    JobApplication.DEFAULT_COVER_LETTER,
-                    JobApplication.DEFAULT_RESUME
+                    new Attachment(),
+                    new Attachment()
             ));
         }
     }

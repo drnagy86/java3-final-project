@@ -1,5 +1,7 @@
 package com.nagy.ch06;
 
+import com.nagy.helpers.Helpers;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -59,6 +61,11 @@ public class User implements Serializable, Comparable<User> {
     }
 
     public User(long userId, String username, String firstName, String lastName) {
+        Helpers.validateStringLength(username,Helpers.MAX_SHORT_STRING_LENGTH);
+        Helpers.validateStringLength(firstName, Helpers.MAX_SHORT_STRING_LENGTH);
+        Helpers.validateStringLength(lastName, Helpers.MAX_SHORT_STRING_LENGTH);
+
+
         this.userId = userId;
         this.username = username;
         this.firstName = firstName;

@@ -22,8 +22,6 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
     public static final String DEFAULT_CITY = "Fake City";
     public static final String DEFAULT_STATE = "Iowa";
     public static final int DEFAULT_POSTAL = 52241;
-    public static Attachment DEFAULT_COVER_LETTER = new Attachment();
-    public static Attachment DEFAULT_RESUME = new Attachment();
 
     public JobApplication() {
 
@@ -34,8 +32,8 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
         this.city = DEFAULT_CITY;
         this.state = DEFAULT_STATE;
         this.postal = DEFAULT_POSTAL;
-        this.coverLetter = DEFAULT_COVER_LETTER;
-        this.resume = DEFAULT_RESUME;
+        this.coverLetter = null;
+        this.resume = null;
     }
 
     public JobApplication(int jobApplicationID, JobPosting jobPosting, User user, String address, String city, String state, int postal, Attachment coverLetter, Attachment resume) {
@@ -85,6 +83,7 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
     }
 
     public void setAddress(String address) {
+        Helpers.validateStringLength(address,Helpers.MAX_SHORT_STRING_LENGTH);
         this.address = address;
     }
 
@@ -93,6 +92,7 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
     }
 
     public void setCity(String city) {
+        Helpers.validateStringLength(city, Helpers.MAX_SHORT_STRING_LENGTH);
         this.city = city;
     }
 
@@ -101,6 +101,7 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
     }
 
     public void setState(String state) {
+        Helpers.validateStringLength(state, Helpers.MAX_SHORT_STRING_LENGTH);
         this.state = state;
     }
 
@@ -109,6 +110,7 @@ public class JobApplication implements Comparable<JobApplication>, Serializable 
     }
 
     public void setPostal(int postal) {
+        Helpers.validatePostal(postal);
         this.postal = postal;
     }
 

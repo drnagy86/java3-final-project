@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 @WebServlet(name = "JobPostingServlet", value = "/final/jobs")
-@MultipartConfig (
+@MultipartConfig(
         fileSizeThreshold = 1_000_000, // 1 MB
         maxFileSize = 5_000_000 //5 MB
 )
@@ -34,11 +34,11 @@ public class JobPostingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String go = request.getParameter("go");
-        if (go == null){
+        if (go == null) {
             go = "list";
         }
         // add log in
-        switch (go){
+        switch (go) {
             case "details":
                 jobPostingDetails(request, response);
                 break;
@@ -49,14 +49,14 @@ public class JobPostingServlet extends HttpServlet {
                 downloadAttachment(request, response);
             case "list":
             default:
-                viewAllJobPostings(request,response);
+                viewAllJobPostings(request, response);
                 break;
         }
     }
 
     private void applications(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("username")== null){
+        if (session.getAttribute("username") == null) {
             response.sendRedirect("../support/login");
             session.setAttribute("pageBeforeLogIn", "final/jobs?go=applications");
             return;
@@ -67,15 +67,15 @@ public class JobPostingServlet extends HttpServlet {
         User currentUser = null;
         String errors = (String) session.getAttribute("errorMessage");
 
-        for(User user : Users.THE_USER_DB){
+        for (User user : Users.THE_USER_DB) {
             String currentUserName = user.getUsername();
-            if (currentUserName.equals(userToFind)){
+            if (currentUserName.equals(userToFind)) {
                 currentUser = user;
                 break;
             }
         }
 
-        if (currentUser == null){
+        if (currentUser == null) {
             //set error message
             errors += "Can not find user information.<br>";
         }
@@ -92,7 +92,7 @@ public class JobPostingServlet extends HttpServlet {
         request.setAttribute("isAdmin", isAdmin);
         request.setAttribute("user", currentUser);
         request.setAttribute("errorMessage", errors);
-        request.getRequestDispatcher("/WEB-INF/final/applications.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/final/applications.jsp").forward(request, response);
 
 
     }
@@ -102,7 +102,7 @@ public class JobPostingServlet extends HttpServlet {
 
 
         HttpSession session = request.getSession();
-        if (session.getAttribute("username")== null){
+        if (session.getAttribute("username") == null) {
             response.sendRedirect("../support/login");
             session.setAttribute("pageBeforeLogIn", "final/jobs?go=applications");
             return;
@@ -118,24 +118,24 @@ public class JobPostingServlet extends HttpServlet {
             int jobApplicationID = Integer.parseInt(request.getParameter("id"));
             jobApplication = jobApplicationManager.retrieveJobApplication(jobApplicationID);
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             errors += "Problem finding the job application. ";
         }
 
         Attachment attachment = null;
-        try{
+        try {
             attachment = (wantResume) ? jobApplication.getResume() : jobApplication.getCoverLetter();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             errors += "Problem finding the download. ";
         }
 
-        if (jobApplication != null && attachment != null){
+        if (jobApplication != null && attachment != null) {
 
             response.setHeader("Content-Disposition", "attachment; filename=" + attachment.getName());
             response.setContentType("application/octet-stream");
-            try(ServletOutputStream stream = response.getOutputStream()) {
+            try (ServletOutputStream stream = response.getOutputStream()) {
                 stream.write(attachment.getContents());
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 errors += "There was a problem downloading the file. ";
             }
         }
@@ -150,12 +150,18 @@ public class JobPostingServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String errors = (String) session.getAttribute("errorMessage");
         boolean noErrors = true;
-        JobApplication jobApplication = null;
+        JobApplication jobApplication = new JobApplication();
 
-        // get everything, create an object, add to list
-        // Type var = session.getAttribute("name");
+        String jobPostingError = "";
+        String userError = "";
+        String addressError = "";
+        String cityError = "";
+        String stateError = "";
+        String postalError = "";
+        String resumeError = "";
+
         int jobID = Integer.parseInt(request.getParameter("jobID"));
-        String firstName =request.getParameter("firstName");
+        String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("emailAddress");
         String address = request.getParameter("address");
@@ -163,66 +169,107 @@ public class JobPostingServlet extends HttpServlet {
         String state = request.getParameter("state");
         String postalString = request.getParameter("postal");
         int postal = 0;
+
+        try {
+            jobApplication.setJobPosting(jobPostManager.retrieveJobPost(jobID));
+        } catch (Exception ex) {
+            noErrors = false;
+            errors += "Can not find job posting" + ex.getMessage();
+        }
+
+        try {
+            jobApplication.setApplicant(new User(
+                    0L,
+                    email,
+                    firstName,
+                    lastName
+            ));
+        } catch (Exception ex) {
+            noErrors = false;
+            userError = ex.getMessage();
+        }
+
+        try {
+            jobApplication.setAddress(address);
+        } catch (Exception ex) {
+            noErrors = false;
+            addressError = ex.getMessage();
+        }
+
+        try {
+            jobApplication.setCity(city);
+        } catch (Exception ex) {
+            noErrors = false;
+            cityError = ex.getMessage();
+        }
+
+        try {
+            jobApplication.setState(state);
+
+        } catch (Exception ex) {
+            noErrors = false;
+            stateError = ex.getMessage();
+        }
+
         try {
             postal = Integer.parseInt(postalString);
+            jobApplication.setPostal(postal);
         } catch (Exception ex) {
-            errors += "Postal code must be a number." + ex.getMessage();
             noErrors = false;
+            postalError = ex.getMessage();
         }
 
-        if (noErrors){
-            try {
-                jobApplication = new JobApplication(
-                        0,
-                        jobPostManager.retrieveJobPost(jobID),
-                        new User(
-                                0L,
-                                email,
-                                firstName,
-                                lastName
-                        ),
-                        address,
-                        city,
-                        state,
-                        postal,
-                        new Attachment(),
-                        new Attachment()
-                );
-            } catch (Exception ex){
-                errors += ex.getMessage();
-                noErrors = false;
-            }
-        }
 
-        try{
-            for(Part part: request.getParts()) {
-                if(part.getName().equals("coverLetter") && part != null && part.getSize() > 0) {
+        try {
+            for (Part part : request.getParts()) {
+                if (part.getName().equals("coverLetter") && part != null && part.getSize() > 0) {
                     Attachment attachment = Attachment.processAttachment(part);
-                    if(attachment != null) {
+                    if (attachment != null) {
                         jobApplication.setCoverLetter(attachment);
                     }
                 }
-                if(part.getName().equals("resume") && part != null && part.getSize() > 0) {
+                if (part.getName().equals("resume") && part != null && part.getSize() > 0) {
                     Attachment attachment = Attachment.processAttachment(part);
-                    if(attachment != null) {
+                    if (attachment != null) {
                         jobApplication.setResume(attachment);
                     }
                 }
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             errors += "Problem uploading files" + ex.getMessage();
             noErrors = false;
         }
 
-        if (noErrors){
+        if (jobApplication.getResume() == null){
+            resumeError = "Resume is required";
+            noErrors = false;
+        }
+
+
+        if (noErrors) {
             jobApplicationManager.createJobApplication(jobApplication);
             success = "Your application has been submitted. Thank you and please wait to be contacted.";
         }
 
         request.setAttribute("errorMessage", errors);
+        request.setAttribute("noErrors", noErrors);
+        request.setAttribute("userError", userError);
+        request.setAttribute("addressError", addressError);
+        request.setAttribute("cityError", cityError);
+        request.setAttribute("stateError", stateError);
+        request.setAttribute("postalError", postalError);
+        request.setAttribute("resumeError", resumeError);
+
         request.setAttribute("successMessage", success);
 
-        viewAllJobPostings(request, response);
+        if (noErrors) viewAllJobPostings(request, response);
+        else {
+
+            request.setAttribute("job", jobPostManager.retrieveJobPost(jobID));
+
+            request.getRequestDispatcher("/WEB-INF/final/details.jsp").forward(request, response);
+        }
+        ;
     }
 
     private void jobPostingDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -233,14 +280,14 @@ public class JobPostingServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(stringID);
             job = jobPostManager.retrieveJobPost(id);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             request.setAttribute("errorMessage", "No job posting found with this ID");
             viewAllJobPostings(request, response);
         }
 
         request.setAttribute("job", job);
 
-        request.getRequestDispatcher("/WEB-INF/final/details.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/final/details.jsp").forward(request, response);
     }
 
     private void viewAllJobPostings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -251,18 +298,18 @@ public class JobPostingServlet extends HttpServlet {
         int page = 1;
         int itemsPerPage = 4;
         int maxPages = jobPostings.size() / itemsPerPage;
-        if (jobPostings.size() % itemsPerPage != 0) maxPages ++;
+        if (jobPostings.size() % itemsPerPage != 0) maxPages++;
 
         String pageStr = request.getParameter("page");
-        if(pageStr != null && !pageStr.equals("")) {
+        if (pageStr != null && !pageStr.equals("")) {
             try {
                 page = Integer.parseInt(pageStr);
-                if(page < 1){
+                if (page < 1) {
                     page = 1;
-                } else if(page > maxPages) {
+                } else if (page > maxPages) {
                     page = maxPages;
                 }
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 page = 1;
             }
         }
@@ -276,12 +323,13 @@ public class JobPostingServlet extends HttpServlet {
         request.setAttribute("currentPage", page);
         request.setAttribute("jobPostSet", jobPostings);
 
-        request.getRequestDispatcher("/WEB-INF/final/jobposting.jsp").forward(request,response);
+
+        request.getRequestDispatcher("/WEB-INF/final/jobposting.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        applyToJob(request,response);
+        applyToJob(request, response);
     }
 }

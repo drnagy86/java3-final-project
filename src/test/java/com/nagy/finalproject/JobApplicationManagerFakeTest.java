@@ -1,6 +1,7 @@
 package com.nagy.finalproject;
 
 import com.nagy.ch06.Users;
+import com.nagy.support.Attachment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +53,7 @@ class JobApplicationManagerFakeTest {
     @Test
     void retrieveJobApplications() {
         // arrange
+//        final int expected = 2;
         final int expected = 2;
         int actual = 0;
 
@@ -74,8 +76,8 @@ class JobApplicationManagerFakeTest {
                 JobApplication.DEFAULT_CITY,
                 JobApplication.DEFAULT_STATE,
                 JobApplication.DEFAULT_POSTAL,
-                JobApplication.DEFAULT_COVER_LETTER,
-                JobApplication.DEFAULT_RESUME
+                new Attachment(),
+                new Attachment()
         );
 
         JobApplication actualApplication = null;
